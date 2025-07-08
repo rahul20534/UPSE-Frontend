@@ -1,5 +1,5 @@
 import React from "react";
-import "./Calender.css";
+import "./Calendar.css";
 import RightArrow from '../../assets/icons/rightarrow.svg';
 import LeftArrow from '../../assets/icons/leftarrow.svg';
 
