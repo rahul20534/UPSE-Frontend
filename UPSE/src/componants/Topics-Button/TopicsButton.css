@@ -1,0 +1,23 @@
+.button {
+    display: flex;
+    background-color:#383636cc;
+    justify-content: center;
+    align-items: center;
+    width: 37px;
+    height: 16px;
+    border-radius: 4px;
+    padding-top: 2px;
+    padding-right: 6px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    margin-right: 5px;
+    
+}
+
+.button h1{
+   font-family: 'inter',sans-serif;
+   font-size: 12px;
+   font-weight: 500;
+   color:#FFFFFFCC;
+}
+  

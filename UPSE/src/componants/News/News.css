@@ -1,0 +1,44 @@
+.news {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.title h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #000;
+}
+
+.context h1 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #000;
+    text-transform: uppercase;
+}
+
+.context-content h1 {
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.5;
+    text-transform: none;
+    margin-bottom: 15px;
+}
+
+/* Additional styling to match the newspaper-like appearance */
+.context {
+    border-top: 2px solid #000;
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+.context-content {
+    margin-left: 10px;
+}
