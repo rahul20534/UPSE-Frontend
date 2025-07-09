@@ -14,7 +14,6 @@ const SidebarWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  min-width: 220px;
   gap: 12px;
 `;
 
@@ -29,7 +28,7 @@ const TopicsLabel = styled.p`
 const SidebarCard = styled.div`
   background: rgba(255, 255, 255, 0.102);
   border-radius: 4px;
-  padding: 20px;
+  padding: 20px 0px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -39,7 +38,7 @@ const TopicList = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px
+  gap: 20px;
 `;
 
 const TopicItem = styled.div`
@@ -47,6 +46,30 @@ const TopicItem = styled.div`
   width: 100%;
   flex-direction: column;
   gap: 12px;
+  position: relative;
+  padding: 0px 20px;
+  cursor: pointer;
+  box-sizing: border-box;
+
+  ${({ selected }) =>
+    selected &&
+    css`
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 80%;
+        width: 4px;
+        background-color: #FF6A00; 
+      }
+
+      p {
+        font-weight: 600;
+        color: #ffffff;
+      }
+    `}
 `;
 
 
@@ -76,7 +99,7 @@ const Topics = () => {
             >
                 <TopicsDataRow>
                   {item.tags.map((i, index2) => (
-                    <Tags key={index2} value={i} />
+                    <Tags selected={selected === index1} key={index2} value={i} />
                   ))}
                 </TopicsDataRow>
                 <TopicsTitle selected={selected === index1}>{item.title}</TopicsTitle>

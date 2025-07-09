@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import Calender from '../../assets/icons/calander.svg';
-import RightArrow from '../../assets/icons/rightarrow.svg';
-import LeftArrow from '../../assets/icons/leftarrow.svg';
+import Calendar from './Calendar';
+
+//icons
+import CalenderIcon from '../assets/icons/calander.svg';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 const DateRow = styled.div`
   width: 100%;
-  max-width: 687px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 0 0 24px 0;
-  margin-bottom: 0;
+  position: relative;
 `;
 
 const Left = styled.div`
@@ -28,11 +27,20 @@ const CalenderBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  position: relative;
 `;
 
 const CalenderImg = styled.img`
   width: 18px;
   height: 18px;
+`;
+
+const CalendarPopup = styled.div`
+  position: absolute;
+  top: 45px;
+  left: 0;
+  z-index: 100;
 `;
 
 const Datetime = styled.div`
@@ -41,9 +49,13 @@ const Datetime = styled.div`
   gap: 12px;
 `;
 
-const ArrowImg = styled.img`
-  width: 13px;
-  height: 13px;
+const IconButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
+  color: ${({ disabled }) => (disabled ? 'rgba(255,255,255,0.5)' : 'white')};
+  font-size: 20px;
 `;
 
 const DateText = styled.h1`
@@ -67,25 +79,91 @@ const DayText = styled.h1`
   margin: 0;
 `;
 
+const formatDate = (date) => {
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = date.toLocaleString('default', { month: 'short' });
+  const year = date.getFullYear();
+  return `${day}, ${month}, ${year}`;
+};
+
+const getDayName = (date) => {
+  return date.toLocaleString('default', { weekday: 'long' });
+};
+
 const DateComponent = () => {
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [showCalendar, setShowCalendar] = useState(false);
+
+  const calendarRef = useRef();
+  const iconRef = useRef();
+
+  const handleOutsideClick = (e) => {
+    if (
+      calendarRef.current &&
+      !calendarRef.current.contains(e.target) &&
+      iconRef.current &&
+      !iconRef.current.contains(e.target)
+    ) {
+      setShowCalendar(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => document.removeEventListener('mousedown', handleOutsideClick);
+  }, []);
+
+  const handlePrevDate = () => {
+    const prev = new Date(currentDate);
+    prev.setDate(prev.getDate() - 1);
+    setCurrentDate(prev);
+  };
+
+  const handleNextDate = () => {
+    const next = new Date(currentDate);
+    next.setDate(next.getDate() + 1);
+    if (next <= new Date()) setCurrentDate(next);
+  };
+
+  const handleDateSelect = (date) => {
+    setCurrentDate(date);
+    setShowCalendar(false);
+  };
+
+  const isToday = currentDate.toDateString() === new Date().toDateString();
+
   return (
     <DateRow>
       <Left>
-        <CalenderBox>
-          <CalenderImg src={Calender} alt="" />
+        <CalenderBox ref={iconRef} onClick={() => setShowCalendar(!showCalendar)}>
+          <CalenderImg src={CalenderIcon} alt="calendar" />
         </CalenderBox>
+
+        {showCalendar && (
+          <CalendarPopup>
+            <Calendar
+              ref={calendarRef}
+              selectedDate={currentDate}
+              setSelectedDate={handleDateSelect}
+            />
+          </CalendarPopup>
+        )}
+
         <Datetime>
-          <div className="leftarrow">
-            <ArrowImg src={LeftArrow} alt="" />
-          </div>
-          <DateText>01, Jun, 2025</DateText>
-          <div className="rightarrow">
-            <ArrowImg src={RightArrow} alt="" />
-          </div>
+          <IconButton onClick={handlePrevDate}>
+            <FiChevronLeft />
+          </IconButton>
+
+          <DateText>{formatDate(currentDate)}</DateText>
+
+          <IconButton onClick={!isToday ? handleNextDate : undefined} disabled={isToday}>
+            <FiChevronRight/>
+          </IconButton>
         </Datetime>
       </Left>
+
       <Right>
-        <DayText>Sunday</DayText>
+        <DayText>{getDayName(currentDate)}</DayText>
       </Right>
     </DateRow>
   );

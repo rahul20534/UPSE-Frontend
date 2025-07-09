@@ -1,29 +1,32 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Button = styled.div`
   display: flex;
-  background-color: #383636cc;
+  background-color: rgba(255, 255, 255, 0.1);
   justify-content: center;
   align-items: center;
-  width: 37px;
-  height: 16px;
   border-radius: 4px;
-  padding: 2px 6px;
-  margin-right: 5px;
+  padding: 4px 6px;
+
+  ${({ selected }) =>
+    selected &&
+    css`
+      background-color: rgba(125, 138, 255, 0.10);
+      color: #FFFFFF;
+    `}
 `;
 
 const ButtonText = styled.h1`
-  font-family: 'Inter', sans-serif;
   font-size: 12px;
   font-weight: 500;
   color: #FFFFFFCC;
   margin: 0;
 `;
 
-const Tags = ({ value }) => {
+const Tags = ({ selected, value }) => {
   return (
-    <Button>
+    <Button selected={selected}>
       <ButtonText>{value}</ButtonText>
     </Button>
   );

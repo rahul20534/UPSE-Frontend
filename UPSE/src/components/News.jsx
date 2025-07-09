@@ -3,69 +3,59 @@ import styled from 'styled-components';
 
 const NewsContainer = styled.div`
   width: 100%;
-  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+`;
+
+const Title = styled.h1`
+  font-size: 28px;
+  font-weight: 600;
+  color: #fff;
   margin: 0;
-  padding: 0;
+  line-height: 1.3;
+`;
+
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
+const Heading = styled.h2`
+  font-size: 20px;
+  font-weight: 600;
   color: #fff;
-  background: none;
-`;
-
-const Title = styled.div`
-  margin-top: 24px;
-  margin-bottom: 24px;
-  h1 {
-    font-size: 32px;
-    font-weight: 500;
-    color: #fff;
-    margin: 0;
-    line-height: 1.2;
-    text-transform: none;
-    letter-spacing: 0.01em;
-  }
-`;
-
-const ContextSection = styled.div`
-  margin-bottom: 32px;
-`;
-
-const ContextHeading = styled.h1`
-  font-size: 22px;
-  font-weight: 500;
-  margin-bottom: 16px;
-  color: #fff;
+  margin: 0;
 `;
 
 const ContextContent = styled.div`
-  background: #44474A;
-  color: #BDBDBD;
-  border-radius: 20px;
-  padding: 18px 24px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 18px 20px;
   font-size: 16px;
   font-weight: 400;
-  margin-bottom: 0;
-  line-height: 1.5;
-`;
-
-const KeyHighlights = styled.div`
-  margin-top: 32px;
-  color: #fff;
-  font-size: 22px;
-  font-weight: 500;
+  color: #ddd;
+  line-height: 1.6;
 `;
 
 const HighlightsList = styled.ul`
-  margin: 18px 0 0 0;
-  padding-left: 20px;
-  color: #fff;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 400;
+  color: #ddd;
+  padding-left: 20px;
+  margin: 0;
+
   li {
-    margin-bottom: 16px;
-    color: #fff;
+    margin-bottom: 12px;
     line-height: 1.6;
+
     a {
       color: #4A7AFF;
       text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 `;
@@ -74,19 +64,27 @@ const News = () => {
   return (
     <NewsContainer>
       <Title>
-        <h1>Practising equality in constitutional courts, Pg8</h1>
+        Practising Equality in Constitutional Courts, Pg 8
       </Title>
-      <ContextSection>
-        <ContextHeading>Context</ContextHeading>
+
+      <Section>
+        <Heading>Context</Heading>
         <ContextContent>
-          The Supreme Court’s recent ruling in Jitender @ Kalla vs State (Govt.) of NCT Of Delhi (2025) revisited criteria for designating senior advocates, continuing a system that raises concerns about systemic inequality and elitism in India’s legal profession.
+          The Supreme Court’s recent ruling in <strong>Jitender @ Kalla vs State (Govt.) of NCT Of Delhi (2025)</strong> revisited the criteria for designating senior advocates — a long-debated system that continues to raise concerns about systemic elitism in India’s legal fraternity.
         </ContextContent>
-      </ContextSection>
-      <KeyHighlights>Key Highlights:</KeyHighlights>
-      <HighlightsList>
-        <li>Supreme Court upheld <a href="#">Section 16 of the Advocates Act, 1961</a>, maintaining the classification of senior advocates vs advocates.</li>
-        <li>The Court found the point-based designation system subjective, but retained the existing application process with minor reforms.</li>
-      </HighlightsList>
+      </Section>
+
+      <Section>
+        <Heading>Key Highlights</Heading>
+        <HighlightsList>
+          <li>
+            The Supreme Court upheld <a href="#">Section 16 of the Advocates Act, 1961</a>, maintaining the classification between senior advocates and advocates.
+          </li>
+          <li>
+            While acknowledging subjectivity in the point-based designation system, the Court opted to retain the current application process with minor procedural reforms.
+          </li>
+        </HighlightsList>
+      </Section>
     </NewsContainer>
   );
 };
