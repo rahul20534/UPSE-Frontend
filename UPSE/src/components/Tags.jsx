@@ -21,7 +21,7 @@ const ButtonText = styled.h1`
   margin: 0;
 `;
 
-const Topicsbutton = ({ value }) => {
+const Tags = ({ value }) => {
   return (
     <Button>
       <ButtonText>{value}</ButtonText>
@@ -29,4 +29,4 @@ const Topicsbutton = ({ value }) => {
   );
 };
 
-export default Topicsbutton;
+export default Tags;

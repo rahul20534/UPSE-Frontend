@@ -1,20 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
+
+
 //icons
-import Eval from '../../assets/icons/main.svg';
-import Notification from '../../assets/icons/notification.svg';
-import NotificationDot from '../../assets/icons/notification-dot.svg';
+import Eval from '../assets/icons/license.svg';
+import Notification from '../assets/icons/notification.svg';
+
+
 //image
-import User from '../../assets/image/user.png';
+import User from '../assets/image/user.png';
 
 const NavbarContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
-  background-color: #18191B;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 30px 40px;
   font-family: 'Inter', Arial, sans-serif;
+  background-color: transparent;
 `;
 
 const NavbarLeft = styled.div`
@@ -24,24 +26,22 @@ const NavbarLeft = styled.div`
 `;
 
 const Greeting = styled.div`
-  h1 {
-    font-size: 32px;
-    font-weight: 500;
-    color: #FFFFFF;
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-  }
+
 `;
 
-const DailyNews = styled.div`
-  h1 {
+
+const Title = styled.h1`
     font-size: 32px;
     font-weight: 500;
     color: #FFFFFF;
     margin: 0;
-    font-family: 'Inter', sans-serif;
-  }
+
+    span {
+      color: #A8A8A8
+    }
 `;
+
+
 
 const NavbarRight = styled.div`
   display: flex;
@@ -52,15 +52,15 @@ const NavbarRight = styled.div`
 const Evaluation = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background-color: #9EAAFF29;
+  gap: 10px;
+  padding: 10px;
+  background-color: rgba(25, 90, 255, 0.16);
   border-radius: 8px;
   cursor: pointer;
   span {
     font-size: 16px;
     font-weight: 500;
-    color: #475DFE;
+    color: #6A94FF;
     font-family: 'Inter', sans-serif;
   }
 `;
@@ -78,27 +78,35 @@ const NotificationBox = styled.div`
   height: 40px;
   background-color: #FFFFFF29;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+
+const Dot = styled.div`
+  position: absolute;
+  top: 8px;
+  left: 26px;
+  width: 6px;
+  height: 6px;
+  background-color: #FF8E68;
+  border-radius: 50%;
+  z-index: 1;
+  transform: translate(50%, -50%);
+  display: inline-block;
+
 `;
 
 const NotificationIcon = styled.img`
-  width: 24px;
-  height: 24px;
-  margin-top: 7.5px;
+  width: 20px;
+  height: 20px;
 `;
 
-const NotificationDotIcon = styled.img`
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  width: 10px;
-  height: 10px;
-  margin-top: 4px;
-  margin-right: 5px;
-`;
 
 const UserProfile = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   overflow: hidden;
   cursor: pointer;
@@ -115,11 +123,8 @@ const Navbar = () => {
     <NavbarContainer>
       <NavbarLeft>
         <Greeting>
-          <h1>Hello, Krishiv</h1>
+          <Title><span>Hello,</span> Krishiv</Title>
         </Greeting>
-        <DailyNews>
-          <h1>Daily News</h1>
-        </DailyNews>
       </NavbarLeft>
       <NavbarRight>
         <Evaluation>
@@ -127,8 +132,9 @@ const Navbar = () => {
           <span>Mains Evaluation</span>
         </Evaluation>
         <NotificationBox>
+          <Dot/>
           <NotificationIcon src={Notification} alt="Notification icon" />
-          <NotificationDotIcon src={NotificationDot} alt="Notification alert" />
+          
         </NotificationBox>
         <UserProfile>
           <UserImage src={User} alt="User profile" />
