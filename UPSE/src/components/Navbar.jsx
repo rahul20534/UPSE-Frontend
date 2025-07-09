@@ -56,14 +56,33 @@ const Evaluation = styled.div`
   padding: 10px;
   background-color: rgba(25, 90, 255, 0.16);
   border-radius: 8px;
-  cursor: pointer;
+  cursor: not-allowed;
+  position: relative;
+
   span {
     font-size: 16px;
     font-weight: 500;
     color: #6A94FF;
-    font-family: 'Inter', sans-serif;
   }
 `;
+
+const ComingSoonBadge = styled.div`
+  position: absolute;
+  top: 120%;
+  right: 50%;
+  transform: translateX(50%);
+  white-space: nowrap; /* 🛠️ prevents wrapping */
+  font-size: 10px;
+  font-weight: 400;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: rgba(106, 148, 255, 0.50);
+`;
+
 
 const EvaluationIcon = styled.img`
   width: 20px;
@@ -130,6 +149,7 @@ const Navbar = () => {
         <Evaluation>
           <EvaluationIcon src={Eval} alt="Evaluation icon" />
           <span>Mains Evaluation</span>
+          <ComingSoonBadge>Coming soon</ComingSoonBadge>
         </Evaluation>
         <NotificationBox>
           <Dot/>

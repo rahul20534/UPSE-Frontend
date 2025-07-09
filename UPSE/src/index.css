@@ -5,4 +5,7 @@ body{
     font-family: 'Inter', sans-serif;
     background-color: #000000;
     color: #ffffff;
+    max-width: 1800px;
+    margin-left: auto;
+    margin-right: auto;
 }
